@@ -7,9 +7,11 @@ SHA file-upload flow (same as celestia-smiles): upload each file to
 Auth via the same surrogate helper vc.py uses; this script never sees the token.
 
 NOTE: the Cloud site is a single self-contained index.html — every asset
-(images, the tooth GLB) is inlined as a data URI, so there are no external
-files to upload. If a later edit adds runtime-loaded external assets
-(JS-built URLs the exporter cannot inline), add them to FILES here.
+(images, the tooth GLB) is inlined as a data URI, EXCEPT the testimonial
+before/after images, which the slider loads at runtime via JS-built URLs
+(assets/testimonials/{case}-before/after.webp) that the exporter cannot
+inline. Those 8 .webp files must be deployed alongside index.html.
+If a later edit adds more runtime-loaded external assets, add them here.
 """
 import hashlib
 import json
@@ -28,6 +30,14 @@ ALLOWED_HOSTS = ["api.vercel.com"]
 PROJECT = "cloud-dental-care"
 FILES = [
     "index.html",
+    "assets/testimonials/aesthetic-before.webp",
+    "assets/testimonials/aesthetic-after.webp",
+    "assets/testimonials/ortho-before.webp",
+    "assets/testimonials/ortho-after.webp",
+    "assets/testimonials/implant-before.webp",
+    "assets/testimonials/implant-after.webp",
+    "assets/testimonials/whitening-before.webp",
+    "assets/testimonials/whitening-after.webp",
 ]
 
 
